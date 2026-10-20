@@ -1,0 +1,25 @@
+name: check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax strategií
+        run: python -m py_compile bots/*/strategies/*.py
+      - name: Validní JSON configy
+        run: for f in bots/*/config/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
+      - name: dry_run musí být true
+        run: |
+          for f in bots/*/config/*.json; do
+            python -c "import json,sys; c=json.load(open('$f')); sys.exit(0 if c.get('dry_run') is True else 1)" \
+              || { echo "::error file=$f::dry_run není true"; exit 1; }
+          done

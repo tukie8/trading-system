@@ -1,0 +1,21 @@
+# Tajné věci – nikdy do repa
+.env
+*.env
+!.env.example
+*.secrets.json
+shared/secrets/
+
+# Runtime data (vznikají na serveru)
+shared/market_data/
+results/
+bots/*/logs/
+bots/*/state/
+bots/*/tmp/
+*.sqlite
+*.sqlite-*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

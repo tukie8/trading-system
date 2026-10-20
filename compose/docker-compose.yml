@@ -1,0 +1,30 @@
+# Spouštět z adresáře compose/:  docker compose up -d
+# Cesty jsou relativní k tomuto souboru, takže repo může ležet kdekoliv.
+#
+# Verze Freqtrade je pevná. Upgrade = samostatný PR + záznam v docs/DECISIONS.md.
+
+x-freqtrade: &freqtrade
+  image: freqtradeorg/freqtrade:${FREQTRADE_VERSION:-2026.9}
+  restart: unless-stopped
+  env_file:
+    - path: .env
+      required: false
+
+services:
+  spot_swing_01:
+    <<: *freqtrade
+    container_name: spot_swing_01
+    volumes:
+      - ../shared/market_data:/freqtrade/user_data/data
+      - ../results/spot_swing_01:/freqtrade/user_data/backtest_results
+      - ../bots/spot_swing_01/config:/freqtrade/user_data/config:ro
+      - ../bots/spot_swing_01/strategies:/freqtrade/user_data/strategies:ro
+      - ../bots/spot_swing_01/logs:/freqtrade/user_data/logs
+      - ../bots/spot_swing_01/state:/freqtrade/user_data/state
+      - ../bots/spot_swing_01/tmp:/freqtrade/user_data/tmp
+    command: >
+      trade
+      --config /freqtrade/user_data/config/config.json
+      --logfile /freqtrade/user_data/logs/freqtrade.log
+
+  # futures_trend_01 a dca_core_01 přibudou, až bude spot_swing_01 stabilní.
