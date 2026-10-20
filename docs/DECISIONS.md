@@ -2,6 +2,7 @@
 
 Jeden řádek na rozhodnutí. Nejnovější nahoře. Formát: `datum | co | proč`.
 
+- 2026-10-20 | Přesun CI workflow do `.github/workflows/check.yml` | GitHub Actions workflow se standardně načítají z `.github/workflows`.
 - 2026-10-20 | Restart projektu (v2): Git repo jako jediný zdroj pravdy, Codex dělá PR, NAS jen `git pull` | Stav byl rozházený v chatech a snapshotech, které si odporovaly; nebylo jasné, co vlastně platí.
 - 2026-10-20 | Aktivní jen `spot_swing_01`, ostatní boti spí | Nejdřív jeden stabilní základ, pak další boti.
 - 2026-10-20 | Nová startovní strategie `TrendPullbackV1` se 4 podmínkami místo `FuturesTrend01` s ~15 | Při ~15 filtrech zbylo ~40 obchodů a výsledky změn byly převážně náhoda. Začínáme od jádra a filtry přidáváme jen s důvodem.
