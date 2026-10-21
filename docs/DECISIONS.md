@@ -2,6 +2,7 @@
 
 Jeden řádek na rozhodnutí. Nejnovější nahoře. Formát: `datum | co | proč`.
 
+- 2026-10-21 | `TrendPullbackV1`: `minimal_roi = {"0": 100}`, `use_exit_signal = True`, výstup při `close_4h < ema_fast_4h` s tagem `trend_lost_4h`; stoploss zůstává `-0.05`, vstupy beze změny | Místo pevných ROI cílů držet pozici do ztráty 4h trendu, se zachováním ochranného stoplossu.
 - 2026-10-20 | Přesun CI workflow do `.github/workflows/check.yml` | GitHub Actions workflow se standardně načítají z `.github/workflows`.
 - 2026-10-20 | Restart projektu (v2): Git repo jako jediný zdroj pravdy, Codex dělá PR, NAS jen `git pull` | Stav byl rozházený v chatech a snapshotech, které si odporovaly; nebylo jasné, co vlastně platí.
 - 2026-10-20 | Aktivní jen `spot_swing_01`, ostatní boti spí | Nejdřív jeden stabilní základ, pak další boti.

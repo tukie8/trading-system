@@ -26,11 +26,7 @@ class TrendPullbackV1(IStrategy):
     rsi_period = 14
     rsi_min = 50             # momentum po odrazu
 
-    minimal_roi = {
-        "0": 0.03,
-        "60": 0.02,
-        "180": 0.01,
-    }
+    minimal_roi = {"0": 100}
     stoploss = -0.05
     trailing_stop = False
     # ------------------------------------------------------------------------
@@ -41,7 +37,7 @@ class TrendPullbackV1(IStrategy):
     # 200 EMA na 4h potřebuje ~200 * 4 = 800 hodinových svíček historie.
     startup_candle_count = 800
 
-    use_exit_signal = False
+    use_exit_signal = True
     exit_profit_only = False
     ignore_roi_if_entry_signal = False
 
@@ -73,5 +69,8 @@ class TrendPullbackV1(IStrategy):
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        # Výstupy řeší ROI a stoploss. Exit signál zatím nepoužíváme.
+        dataframe.loc[
+            dataframe["close_4h"] < dataframe["ema_fast_4h"],
+            ["exit_long", "exit_tag"],
+        ] = (1, "trend_lost_4h")
         return dataframe
