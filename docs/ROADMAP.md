@@ -73,6 +73,18 @@ Rozdělení měsíčních vkladů mezi boty podle výsledků, společný limit r
 - Notifikace (Telegram), záloha `state/` botů
 - Později: ML stroj s RTX 3090, akciová fáze
 
+## Budoucí směr: ropa intradenně (až po fázi 4)
+Podnět: kamarád obchoduje ropu intradenně přes prop firmu **Fintokei** a daří se mu.
+- **Jak by se to dělalo:** Fintokei je prop firma – zaplatí se poplatek za „challenge“, obchoduje se s jejich kapitálem
+  a ze zisku dostaneš podíl. Platformy MT5 / cTrader / TradingView, automatické obchodování (EA) je povolené
+  (zakázané je HFT, tick scalping, kopírování obchodů). Výhoda: není potřeba vlastní kapitál na páku.
+- **Na co pozor:** přísná pravidla (denní ztráta 2–5 %, max. ztráta 3–10 % podle programu). Poplatek za challenge
+  propadne, když se pravidla poruší, a to se botovi během pár hodin může stát. Pravidla ověřit přímo u Fintokei.
+- **Jiná technika:** Freqtrade tam nejde; bot by běžel v MT5 (Python knihovna `MetaTrader5`) nebo jako cBot v cTraderu.
+- **První krok nebude kód:** sednout si s kamarádem a sepsat jeho pravidla (instrument, časový rámec, vstup, stop, výstup,
+  kdy neobchoduje). Zjistit, jestli obchoduje podle pravidel, nebo podle citu/zpráv, a jak mu to šlo za delší období.
+- Pak stejný postup jako u krypta: backtest → papírový provoz (demo) → teprve potom placená challenge.
+
 ## Teď nedělat
 - Přidávat filtry bez jasné hypotézy
 - Testovat na OOS datech během ladění
