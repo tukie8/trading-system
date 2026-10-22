@@ -49,6 +49,7 @@ Backtesty se spouští na NASu přes `scripts/backtest.sh`, ne v sandboxu. Výsl
 
 ## Kde co je
 
+- `docs/ROADMAP.md` – plán po fázích a kritéria pro postup (čti, než navrhneš větší změnu)
 - `docs/WORKFLOW.md` – jak probíhá jedna iterace
 - `docs/DECISIONS.md` – historie rozhodnutí
 - `docs/EXPERIMENTS.md` – výsledky backtestů
