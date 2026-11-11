@@ -54,8 +54,8 @@ class TrendPullbackV1(IStrategy):
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         conditions = (
-            # 1) 4h uptrend: cena nad pomalou EMA a rychlá nad pomalou
-            (dataframe["close_4h"] > dataframe["ema_slow_4h"])
+            # 1) 4h uptrend: cena nad rychlou EMA a rychlá nad pomalou
+            (dataframe["close_4h"] > dataframe["ema_fast_4h"])
             & (dataframe["ema_fast_4h"] > dataframe["ema_slow_4h"])
             # 2) 1h pullback: svíčka sáhla pod EMA50 a zavřela nad ní
             & (dataframe["low"] < dataframe["ema_pullback"])
